@@ -1,0 +1,18 @@
+version: '3'
+services:
+    frontend:
+        build: nginx
+        ports:
+         - "8000:80"
+        volumes:
+         - ./data:/var/www/html
+        depends_on:
+         - phpbackend
+        links:
+         - phpbackend
+    phpbackend:
+        build: php
+        volumes:
+         - ./data:/var/www/html
+        ports:
+         - "9000:9000"
